@@ -15,10 +15,12 @@ export default defineNuxtConfig({
   // Components folders that opt out of the default subfolder-name prefix.
   // - ui/      → Base* primitives, prefix would just repeat ("UiBaseButton")
   // - cosmic/  → single CosmicField.vue, prefix would double the word
+  // - layout/  → The*-prefixed singletons, prefix would shadow the convention
   // Everything else keeps the default convention.
   components: [
     { path: '~/components/ui', pathPrefix: false },
     { path: '~/components/cosmic', pathPrefix: false },
+    { path: '~/components/layout', pathPrefix: false },
     '~/components',
   ],
 

@@ -133,6 +133,15 @@ export interface FooterCopy {
 }
 
 /**
+ * Strings consumed by assistive-tech (aria-label, sr-only text, skip links).
+ * Kept separate from visible copy so a11y reviews are easy to find.
+ */
+export interface A11yCopy {
+  skipToMain: string
+  toggleLanguage: string
+}
+
+/**
  * Root locale shape. Composed of section interfaces above.
  * The order here is the source of truth for the page composition order.
  */
@@ -147,4 +156,5 @@ export interface LocaleMessages {
   now: NowCopy
   contact: ContactCopy
   footer: FooterCopy
+  a11y: A11yCopy
 }

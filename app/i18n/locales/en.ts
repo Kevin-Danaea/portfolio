@@ -248,4 +248,9 @@ export default {
     quote:
       '"The universe is not only queerer than we suppose, but queerer than we can suppose." — J.B.S. Haldane',
   },
+
+  a11y: {
+    skipToMain: 'Skip to main content',
+    toggleLanguage: 'Toggle language',
+  },
 } satisfies LocaleMessages

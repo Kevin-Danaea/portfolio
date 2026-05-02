@@ -248,4 +248,9 @@ export default {
     quote:
       '"El universo no solo es más extraño de lo que suponemos, sino más extraño de lo que podemos suponer." — J.B.S. Haldane',
   },
+
+  a11y: {
+    skipToMain: 'Saltar al contenido principal',
+    toggleLanguage: 'Cambiar idioma',
+  },
 } satisfies LocaleMessages
