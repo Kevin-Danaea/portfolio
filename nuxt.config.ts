@@ -12,6 +12,11 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
 
+  // ui/ holds Base* primitives — drop the path prefix so they're imported
+  // as <BaseButton> instead of <UiBaseButton>. Everything else keeps the
+  // default convention (subfolder name as prefix).
+  components: [{ path: '~/components/ui', pathPrefix: false }, '~/components'],
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
