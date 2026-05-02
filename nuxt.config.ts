@@ -78,6 +78,10 @@ export default defineNuxtConfig({
     sitemap: 'https://kevinaguilera.tech/sitemap.xml',
   },
 
+  // Global CSS, in cascade order: tokens → reset → base.
+  // Component/section styles live with their components (scoped or not).
+  css: ['~/assets/styles/tokens.css', '~/assets/styles/reset.css', '~/assets/styles/base.css'],
+
   nitro: {
     preset: 'static',
   },

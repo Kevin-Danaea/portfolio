@@ -1,0 +1,71 @@
+/* =========================================================================
+   Base globals — body typography, focus rings, selection, .mono utility.
+   Section/component styles live with their components.
+   ========================================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--type-body);
+  line-height: var(--line-body);
+  letter-spacing: 0.005em;
+  color: var(--color-fg);
+  background: var(--color-bg);
+  background-image: var(--grid-bg);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Selection lifts the amber accent; legible on dark bg. */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Visible focus for keyboard users only — pointer focus stays clean. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Mono utility used by eyebrows, callouts, code-ish bits. */
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'ss01';
+  letter-spacing: 0;
+}
+
+/* Skip link — visible only when focused, keeps assistive tech happy. */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1000;
+  padding: 10px 16px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  border-radius: 4px;
+  transform: translateY(-200%);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
