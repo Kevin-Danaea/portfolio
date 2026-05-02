@@ -1,11 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+//
+// Convention-over-configuration audit: this file only contains options that
+// (a) opt into intentional non-defaults, or (b) configure modules with values
+// the framework cannot infer (locales list, font families, site identity).
+// Anything Nuxt or a module already does by default is NOT repeated here.
 export default defineNuxtConfig({
   compatibilityDate: '2025-01-01',
   future: {
+    // Opts into Nuxt 4 layout (srcDir = app/) on Nuxt 3.x.
     compatibilityVersion: 4,
   },
   devtools: { enabled: true },
-  ssr: true,
 
   modules: [
     '@nuxt/eslint',
@@ -18,6 +23,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
   ],
 
+  // Single source of truth consumed by sitemap, robots and schema-org modules.
   site: {
     url: 'https://kevinaguilera.tech',
     name: 'Kevin Aguilera',
@@ -28,10 +34,13 @@ export default defineNuxtConfig({
   i18n: {
     strategy: 'prefix_and_default',
     defaultLocale: 'en',
+    baseUrl: 'https://kevinaguilera.tech',
     locales: [
       { code: 'en', language: 'en-US', file: 'en.ts', name: 'English', dir: 'ltr' },
       { code: 'es', language: 'es-MX', file: 'es.ts', name: 'Español', dir: 'ltr' },
     ],
+    // @nuxtjs/i18n@10 resolves restructureDir from rootDir (not srcDir),
+    // so we point it explicitly at app/i18n to keep i18n co-located with code.
     restructureDir: 'app/i18n',
     detectBrowserLanguage: {
       useCookie: true,
@@ -40,7 +49,6 @@ export default defineNuxtConfig({
       alwaysRedirect: false,
       fallbackLocale: 'en',
     },
-    baseUrl: 'https://kevinaguilera.tech',
   },
 
   fonts: {
@@ -54,18 +62,12 @@ export default defineNuxtConfig({
       { name: 'Geist', weights: [300, 400, 500, 600], provider: 'google' },
       { name: 'JetBrains Mono', weights: [400, 500], provider: 'google' },
     ],
-    defaults: {
-      subsets: ['latin'],
-    },
+    defaults: { subsets: ['latin'] },
   },
 
   image: {
     format: ['avif', 'webp'],
     quality: 85,
-  },
-
-  pinia: {
-    storesDirs: ['./app/stores/**'],
   },
 
   schemaOrg: {
@@ -76,34 +78,12 @@ export default defineNuxtConfig({
     sitemap: 'https://kevinaguilera.tech/sitemap.xml',
   },
 
-  eslint: {
-    config: {
-      stylistic: false,
-    },
-  },
-
-  typescript: {
-    strict: true,
-    typeCheck: false,
-    tsConfig: {
-      compilerOptions: {
-        noUncheckedIndexedAccess: true,
-        exactOptionalPropertyTypes: true,
-      },
-    },
-  },
-
   nitro: {
     preset: 'static',
-    prerender: {
-      crawlLinks: true,
-      routes: ['/'],
-    },
   },
 
   app: {
     head: {
-      htmlAttrs: { lang: 'en' },
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
