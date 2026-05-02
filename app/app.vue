@@ -1,12 +1,10 @@
 <script setup lang="ts">
-useHead({
-  title: 'Kevin Aguilera — Software Engineer',
-})
+const head = useLocaleHead({ seo: true })
+useHead(head)
 </script>
 
 <template>
-  <div>
-    <h1>Kevin Aguilera</h1>
-    <p>Scaffolding placeholder — real UI lands in subsequent steps.</p>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>

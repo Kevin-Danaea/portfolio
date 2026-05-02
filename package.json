@@ -24,7 +24,15 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@nuxt/fonts": "^0.14.0",
+    "@nuxt/image": "^2.0.0",
+    "@nuxtjs/i18n": "^10.3.0",
+    "@nuxtjs/robots": "^6.0.8",
+    "@nuxtjs/sitemap": "^8.0.15",
+    "@pinia/nuxt": "^0.11.3",
     "nuxt": "^3.15.0",
+    "nuxt-schema-org": "^6.0.4",
+    "pinia": "^3.0.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
