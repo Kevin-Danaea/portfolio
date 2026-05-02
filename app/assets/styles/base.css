@@ -59,6 +59,23 @@ body {
   transform: translateY(0);
 }
 
+/* Reveal-on-scroll utility — toggled by useReveal composable. The "is-in"
+   class is added the first time the element crosses the viewport threshold.
+   Inside prefers-reduced-motion the global rule below collapses the
+   transition to 0.01ms, so content appears instantly without animation. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

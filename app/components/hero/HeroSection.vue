@@ -10,13 +10,16 @@ const words = computed<string[]>(() => {
   const raw = tm('hero.taglineWords') as unknown[]
   return raw.map((w) => rt(w as string))
 })
+
+const gridEl = ref<HTMLElement | null>(null)
+const isRevealed = useReveal(gridEl)
 </script>
 
 <template>
   <section class="hero" aria-labelledby="hero-heading">
     <HeroInstruments />
 
-    <div class="hero__grid">
+    <div ref="gridEl" class="hero__grid reveal" :class="{ 'is-in': isRevealed }">
       <div class="hero__text">
         <p class="hero__role mono">— {{ t('hero.role') }}</p>
         <h1 id="hero-heading" class="hero__name">

@@ -14,10 +14,18 @@ const interests = computed<string[]>(() => {
   const raw = tm('about.interests') as unknown[]
   return raw.map((w) => rt(w as string))
 })
+
+const rootEl = ref<HTMLElement | null>(null)
+const isRevealed = useReveal(rootEl)
 </script>
 
 <template>
-  <section id="about" class="section about">
+  <section
+    id="about"
+    ref="rootEl"
+    class="section about reveal"
+    :class="{ 'is-in': isRevealed }"
+  >
     <SectionHeading :eyebrow="t('about.eyebrow')" :title="t('about.title')" />
     <div class="about__grid">
       <div class="about__text">

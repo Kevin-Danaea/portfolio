@@ -12,10 +12,18 @@ const groups = computed<StackGroup[]>(() => {
     }
   })
 })
+
+const rootEl = ref<HTMLElement | null>(null)
+const isRevealed = useReveal(rootEl)
 </script>
 
 <template>
-  <section id="stack" class="section">
+  <section
+    id="stack"
+    ref="rootEl"
+    class="section reveal"
+    :class="{ 'is-in': isRevealed }"
+  >
     <SectionHeading
       :eyebrow="t('stack.eyebrow')"
       :title="t('stack.title')"

@@ -25,10 +25,18 @@ function onMove(e: MouseEvent) {
   el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`)
   el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`)
 }
+
+const rootEl = ref<HTMLElement | null>(null)
+const isRevealed = useReveal(rootEl)
 </script>
 
 <template>
-  <section id="contact" class="section section--contact">
+  <section
+    id="contact"
+    ref="rootEl"
+    class="section section--contact reveal"
+    :class="{ 'is-in': isRevealed }"
+  >
     <SectionHeading :eyebrow="t('contact.eyebrow')" :title="t('contact.title')" />
     <p class="contact__sub">{{ t('contact.sub') }}</p>
 

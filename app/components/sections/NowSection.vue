@@ -9,10 +9,18 @@ const items = computed<NowItem[]>(() => {
     return { k: rt(obj.k as string), v: rt(obj.v as string) }
   })
 })
+
+const rootEl = ref<HTMLElement | null>(null)
+const isRevealed = useReveal(rootEl)
 </script>
 
 <template>
-  <section id="now" class="section">
+  <section
+    id="now"
+    ref="rootEl"
+    class="section reveal"
+    :class="{ 'is-in': isRevealed }"
+  >
     <SectionHeading
       :eyebrow="t('now.eyebrow')"
       :title="t('now.title')"

@@ -27,10 +27,18 @@ const languages = computed<LangEntry[]>(() => {
     return { lang: rt(obj.lang as string), level: rt(obj.level as string) }
   })
 })
+
+const rootEl = ref<HTMLElement | null>(null)
+const isRevealed = useReveal(rootEl)
 </script>
 
 <template>
-  <section id="education" class="section">
+  <section
+    id="education"
+    ref="rootEl"
+    class="section reveal"
+    :class="{ 'is-in': isRevealed }"
+  >
     <SectionHeading :eyebrow="t('education.eyebrow')" :title="t('education.title')" />
     <div class="edu">
       <div class="edu__col">

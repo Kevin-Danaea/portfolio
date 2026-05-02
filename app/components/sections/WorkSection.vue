@@ -16,10 +16,18 @@ const items = computed<WorkItem[]>(() => {
     }
   })
 })
+
+const rootEl = ref<HTMLElement | null>(null)
+const isRevealed = useReveal(rootEl)
 </script>
 
 <template>
-  <section id="work" class="section">
+  <section
+    id="work"
+    ref="rootEl"
+    class="section reveal"
+    :class="{ 'is-in': isRevealed }"
+  >
     <SectionHeading
       :eyebrow="t('work.eyebrow')"
       :title="t('work.title')"
