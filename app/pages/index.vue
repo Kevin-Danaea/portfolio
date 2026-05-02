@@ -10,7 +10,12 @@ useSeoMeta({
 <template>
   <main id="main">
     <span id="top" aria-hidden="true" />
-    <h1>{{ t('meta.title') }}</h1>
-    <p>Sections land in step 8 of the rewrite plan.</p>
+    <HeroSection />
+    <AboutSection />
+    <StackSection />
+    <WorkSection />
+    <EducationSection />
+    <NowSection />
+    <ContactSection />
   </main>
 </template>
