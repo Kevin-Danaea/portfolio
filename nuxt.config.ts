@@ -12,10 +12,15 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: true },
 
-  // ui/ holds Base* primitives — drop the path prefix so they're imported
-  // as <BaseButton> instead of <UiBaseButton>. Everything else keeps the
-  // default convention (subfolder name as prefix).
-  components: [{ path: '~/components/ui', pathPrefix: false }, '~/components'],
+  // Components folders that opt out of the default subfolder-name prefix.
+  // - ui/      → Base* primitives, prefix would just repeat ("UiBaseButton")
+  // - cosmic/  → single CosmicField.vue, prefix would double the word
+  // Everything else keeps the default convention.
+  components: [
+    { path: '~/components/ui', pathPrefix: false },
+    { path: '~/components/cosmic', pathPrefix: false },
+    '~/components',
+  ],
 
   modules: [
     '@nuxt/eslint',
