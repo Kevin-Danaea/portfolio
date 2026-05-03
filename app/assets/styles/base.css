@@ -5,6 +5,12 @@
 
 html {
   scroll-behavior: smooth;
+  /* Clip horizontal overflow on the html element so body remains a normal
+     non-scroll-container. Setting overflow-x on body would auto-promote
+     overflow-y to "auto", breaking iOS Safari's dynamic toolbar collapse
+     and preventing window.scrollY from updating — which makes the footer
+     unreachable and stars jump on every scroll-triggered resize. */
+  overflow-x: clip;
 }
 
 body {
@@ -14,7 +20,6 @@ body {
   letter-spacing: 0.005em;
   color: var(--color-fg);
   background: var(--color-bg);
-  overflow-x: hidden;
 }
 
 /* Selection lifts the amber accent; legible on dark bg. */

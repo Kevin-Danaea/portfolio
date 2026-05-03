@@ -14,6 +14,12 @@ const { t } = useI18n()
 
 <style scoped>
 .footer {
+  /* Match .site__page's stacking layer so the cosmic-field canvas
+     (position: fixed; z-index: 0) doesn't paint over the footer.
+     Without this, CSS paints positioned z-index:0 elements above
+     static block-level siblings, hiding the footer behind stars. */
+  position: relative;
+  z-index: 2;
   max-width: var(--shell-max);
   margin: 0 auto;
   padding: 60px 32px 40px;

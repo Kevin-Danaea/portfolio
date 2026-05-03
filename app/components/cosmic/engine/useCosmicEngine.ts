@@ -60,13 +60,17 @@ export function useCosmicEngine(options: UseCosmicEngineOptions) {
   const density = options.density ?? DEFAULT_DENSITY
   const accent = options.accent ?? DEFAULT_ACCENT
   const reducedMotion =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const paused = options.paused ?? reducedMotion
 
+  /** Re-seed only on width changes (or first run). iOS Safari fires `resize`
+   *  every time the address bar collapses/expands during scroll — re-seeding
+   *  on those would teleport every star to a new random position. The wrap
+   *  helpers keep existing bodies on-screen as height changes. */
   function resize(): void {
     const canvas = options.canvas.value
     if (!canvas) return
+    const prevW = W
     W = window.innerWidth
     H = window.innerHeight
     dpr = Math.min(window.devicePixelRatio || 1, DPR_CAP)
@@ -78,7 +82,9 @@ export function useCosmicEngine(options: UseCosmicEngineOptions) {
     if (!c2d) return
     ctx = c2d
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    scene = createScene({ width: W, height: H, density, accent })
+    if (!scene || prevW !== W) {
+      scene = createScene({ width: W, height: H, density, accent })
+    }
     if (paused) renderStaticFrame()
   }
 
