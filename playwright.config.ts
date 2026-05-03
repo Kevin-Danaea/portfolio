@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
-const PORT = 3000
+const PORT = 4173
 const BASE_URL = `http://127.0.0.1:${PORT}`
 
 export default defineConfig({
@@ -20,7 +20,10 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: 'pnpm preview',
+    // Static preset has no nitro server entry, so we serve the prerendered
+    // .output/public directly via `serve`. test:e2e script runs `nuxt
+    // generate` first to populate it.
+    command: 'pnpm preview:static',
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     stdout: 'ignore',

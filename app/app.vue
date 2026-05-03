@@ -37,7 +37,10 @@ useSchemaOrg([
 <template>
   <div class="site">
     <SkipLink />
-    <CosmicField />
+    <!-- Lazy: keeps the cosmic engine (~30KB gzipped of physics + draw
+         + canvas setup) out of the entry chunk. Backdrop appears a few
+         hundred ms after first paint — fine for purely decorative content. -->
+    <LazyCosmicField />
     <TheNav />
     <NuxtPage class="site__page" />
     <TheFooter />
