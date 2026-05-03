@@ -69,13 +69,19 @@ function tickAt(i: number) {
     </svg>
 
     <div class="portrait__frame">
-      <NuxtImg
+      <!-- Plain <img> on purpose. NuxtImg's IPX provider generates URLs with
+           "&" and "," in the path (/_ipx/w_1024&f_avif,webp&q_85/...) which
+           Vercel's static routing doesn't serve correctly. The PNG is small
+           and eager-loaded above the fold, so IPX optimization isn't worth
+           the deploy fragility here. -->
+      <img
         src="/images/kevin.png"
         alt="Portrait of Kevin Aguilera"
         class="portrait__img"
-        format="avif,webp"
         loading="eager"
-        sizes="sm:80vw md:420px"
+        decoding="async"
+        width="420"
+        height="420"
       />
       <div class="portrait__grid" aria-hidden="true" />
       <span class="portrait__corner portrait__corner--tl" aria-hidden="true">▘</span>
