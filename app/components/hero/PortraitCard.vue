@@ -26,10 +26,39 @@ function tickAt(i: number) {
         </radialGradient>
       </defs>
       <circle cx="200" cy="200" r="195" fill="url(#portrait-halo)" />
-      <circle cx="200" cy="200" r="170" fill="none" stroke="rgba(232,160,107,0.35)" stroke-width="0.6" stroke-dasharray="2 4" />
-      <circle cx="200" cy="200" r="155" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.4" />
-      <circle cx="200" cy="200" r="140" fill="none" stroke="rgba(232,160,107,0.18)" stroke-width="0.4" stroke-dasharray="1 3" />
-      <line v-for="i in ticks" :key="i" v-bind="tickAt(i)" stroke="rgba(255,255,255,0.25)" stroke-width="0.5" />
+      <circle
+        cx="200"
+        cy="200"
+        r="170"
+        fill="none"
+        stroke="rgba(232,160,107,0.35)"
+        stroke-width="0.6"
+        stroke-dasharray="2 4"
+      />
+      <circle
+        cx="200"
+        cy="200"
+        r="155"
+        fill="none"
+        stroke="rgba(255,255,255,0.08)"
+        stroke-width="0.4"
+      />
+      <circle
+        cx="200"
+        cy="200"
+        r="140"
+        fill="none"
+        stroke="rgba(232,160,107,0.18)"
+        stroke-width="0.4"
+        stroke-dasharray="1 3"
+      />
+      <line
+        v-for="i in ticks"
+        :key="i"
+        v-bind="tickAt(i)"
+        stroke="rgba(255,255,255,0.25)"
+        stroke-width="0.5"
+      />
       <g class="portrait__orbit">
         <circle cx="200" cy="30" r="3" fill="#e8a06b" />
         <circle cx="200" cy="30" r="6" fill="rgba(232,160,107,0.2)" />
@@ -77,15 +106,24 @@ function tickAt(i: number) {
   inset: -8%;
   width: 116%;
   height: 116%;
+  /* Global reset applies max-width: 100% to svg — override so the ring
+     can extend 8% outside the portrait frame on all sides. */
+  max-width: none;
   z-index: 1;
 }
 
 .portrait__orbit {
-  transform-origin: 200px 200px;
+  /* transform-box: view-box makes transform-origin percentages relative to the
+     SVG viewport (the viewBox), not the <g> element's own bounding box.
+     center center = (200, 200) in viewBox coords = the ring's true center. */
+  transform-box: view-box;
+  transform-origin: center center;
   animation: orbit-spin 18s linear infinite;
 }
 
 .portrait__orbit--rev {
+  transform-box: view-box;
+  transform-origin: center center;
   animation: orbit-spin 28s linear infinite reverse;
 }
 
