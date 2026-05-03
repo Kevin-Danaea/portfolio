@@ -46,7 +46,7 @@ const current = computed(() => props.words[idx.value] ?? '')
   display: inline-block;
   padding: 0 8px;
   border-radius: 4px;
-  background: rgb(232 160 107 / 0.08);
+  background: color-mix(in srgb, var(--color-accent) 16%, transparent);
   color: var(--color-accent);
   font-family: var(--font-sans);
   font-style: normal;

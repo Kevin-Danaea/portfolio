@@ -13,8 +13,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  density: 1,
-  accent: '#e8a06b',
+  density: 2.5,
+  accent: '#c2493b',
 })
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)

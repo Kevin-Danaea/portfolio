@@ -40,7 +40,7 @@ useSchemaOrg([
     <!-- Lazy: keeps the cosmic engine (~30KB gzipped of physics + draw
          + canvas setup) out of the entry chunk. Backdrop appears a few
          hundred ms after first paint — fine for purely decorative content. -->
-    <LazyCosmicField />
+    <LazyCosmicField :density="2.5" accent="#c2493b" />
     <TheNav />
     <NuxtPage class="site__page" />
     <TheFooter />
@@ -52,10 +52,23 @@ useSchemaOrg([
   position: relative;
   z-index: 1;
   min-height: 100vh;
+  background: var(--grid-bg);
+}
+
+.site::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgb(255 255 255 / 0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: linear-gradient(to bottom, black, black 80%, transparent);
+  mask-image: linear-gradient(to bottom, black, black 80%, transparent);
 }
 
 .site__page {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 </style>

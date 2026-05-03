@@ -70,7 +70,6 @@ function tickAt(i: number) {
   width: 100%;
   max-width: 420px;
   aspect-ratio: 1;
-  margin: 0 auto;
 }
 
 .portrait__orbits {

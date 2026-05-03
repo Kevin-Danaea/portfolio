@@ -120,6 +120,15 @@ const isRevealed = useReveal(gridEl)
   gap: 14px;
 }
 
+/* Mirrors the prototype's .hero-portrait: relative positioning + flex
+   centering so the inner .portrait sits dead-center in the grid cell. */
+.hero__portrait {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 980px) {
   .hero {
     padding-top: 110px;

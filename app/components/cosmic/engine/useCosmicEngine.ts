@@ -43,8 +43,8 @@ export interface UseCosmicEngineOptions {
   paused?: boolean
 }
 
-const DEFAULT_DENSITY = 1
-const DEFAULT_ACCENT: Hex = '#e8a06b'
+const DEFAULT_DENSITY = 2.5
+const DEFAULT_ACCENT: Hex = '#c2493b'
 /** prefers-reduced-motion → cap DPR low and skip RAF (single static render). */
 const DPR_CAP = 2
 
@@ -91,7 +91,7 @@ export function useCosmicEngine(options: UseCosmicEngineOptions) {
     s.t += 1
 
     // Trailing fade — leaves star streaks (background-tinted)
-    ctx.fillStyle = 'rgba(8, 6, 14, 0.32)'
+    ctx.fillStyle = 'rgba(10, 6, 8, 0.32)'
     ctx.fillRect(0, 0, W, H)
 
     // 1) Nebula
@@ -184,7 +184,7 @@ export function useCosmicEngine(options: UseCosmicEngineOptions) {
 
   function renderStaticFrame(): void {
     if (!ctx || !scene) return
-    ctx.fillStyle = 'rgba(8, 6, 14, 1)'
+    ctx.fillStyle = 'rgba(10, 6, 8, 1)'
     ctx.fillRect(0, 0, W, H)
     drawNebula(ctx, W, H, scene.t)
     for (const q of scene.quasars) drawQuasar(ctx, q)

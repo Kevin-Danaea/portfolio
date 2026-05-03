@@ -5,13 +5,13 @@
 
 :root {
   /* ---------- Color ---------------------------------------------------- */
-  --color-bg: #08080e;
-  --color-bg-2: #0d0d18;
+  --color-bg: #0a0608;
+  --color-bg-2: #191516;
   --color-fg: #ece8df;
   --color-fg-dim: #9b9aa2;
   --color-fg-mute: #5f5e69;
 
-  --color-accent: #e8a06b;        /* warm amber pulled from the photo  */
+  --color-accent: #c2493b;        /* wine accent from the accepted mock */
   --color-accent-2: #c2493b;      /* wine, also from the photo         */
   --color-accent-cool: #6f8eff;   /* plasma blue                       */
 

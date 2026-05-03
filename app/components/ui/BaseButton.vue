@@ -64,9 +64,9 @@ withDefaults(
 }
 
 .base-btn--primary:hover {
-  background: #f1b487;
+  background: color-mix(in srgb, var(--color-accent) 88%, white);
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgb(232 160 107 / 0.25);
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--color-accent) 28%, transparent);
 }
 
 .base-btn--ghost {

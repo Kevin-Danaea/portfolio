@@ -14,8 +14,6 @@ body {
   letter-spacing: 0.005em;
   color: var(--color-fg);
   background: var(--color-bg);
-  background-image: var(--grid-bg);
-  background-attachment: fixed;
   overflow-x: hidden;
 }
 
