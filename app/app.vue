@@ -4,6 +4,34 @@
 // page content rise above it via the body's stacking context.
 const head = useLocaleHead({ seo: true })
 useHead(head)
+
+// JSON-LD identity — Person schema with sameAs pointing at GitHub +
+// LinkedIn. Emitted once for the whole site by nuxt-schema-org.
+useSchemaOrg([
+  defineWebSite({
+    name: 'Kevin Aguilera',
+    url: 'https://kevinaguilera.tech',
+    inLanguage: ['en-US', 'es-MX'],
+  }),
+  definePerson({
+    name: 'Kevin Aguilera',
+    alternateName: 'Kevin Danae Aguilera Barragán',
+    jobTitle: 'Software Engineer',
+    url: 'https://kevinaguilera.tech',
+    image: 'https://kevinaguilera.tech/images/kevin.png',
+    sameAs: [
+      'https://github.com/Kevin-Danaea',
+      'https://www.linkedin.com/in/kevin-danae/',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Tolcayuca',
+      addressRegion: 'Hidalgo',
+      addressCountry: 'MX',
+    },
+  }),
+  defineWebPage(),
+])
 </script>
 
 <template>
