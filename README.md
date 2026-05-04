@@ -114,7 +114,7 @@ app/
   types/                     shared TS types
 public/
   images/kevin.png           hero portrait (raw PNG, served as-is)
-  cv.pdf, favicon.svg, robots.txt, og-image.png
+  Kevin_Aguilera_Resume.pdf, favicon.svg, robots.txt, og.png
 tests/
   unit/                      Vitest — one file per behavior, not per file
   e2e/                       Playwright + axe-core — smoke, a11y, reduced-motion

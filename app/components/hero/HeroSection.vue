@@ -35,7 +35,7 @@ const isRevealed = useReveal(gridEl)
             {{ t('hero.cta1') }}
             <template #icon>→</template>
           </BaseButton>
-          <BaseButton variant="ghost" href="/cv.pdf" target="_blank" download>
+          <BaseButton variant="ghost" href="/Kevin_Aguilera_Resume.pdf" target="_blank" download>
             {{ t('hero.cta2') }}
             <template #icon>↓</template>
           </BaseButton>

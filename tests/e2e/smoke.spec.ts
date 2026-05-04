@@ -72,8 +72,8 @@ for (const locale of ['en', 'es'] as const) {
       await expect(focused).toHaveClass(/skip-link/)
     })
 
-    test('CV download link exists with correct href', async ({ page }) => {
-      const cv = page.locator('a[href="/cv.pdf"]')
+    test('Resume download link exists with correct href', async ({ page }) => {
+      const cv = page.locator('a[href="/Kevin_Aguilera_Resume.pdf"]')
       await expect(cv.first()).toBeVisible()
     })
 
