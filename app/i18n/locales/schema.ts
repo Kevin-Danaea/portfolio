@@ -93,6 +93,11 @@ export interface LangEntry {
 export interface EducationCopy {
   eyebrow: string
   title: string
+  labels: {
+    formal: string
+    certifications: string
+    languages: string
+  }
   formal: readonly FormalEdu[]
   certs: readonly string[]
   languages: readonly LangEntry[]

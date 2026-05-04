@@ -33,16 +33,11 @@ const isRevealed = useReveal(rootEl)
 </script>
 
 <template>
-  <section
-    id="education"
-    ref="rootEl"
-    class="section reveal"
-    :class="{ 'is-in': isRevealed }"
-  >
+  <section id="education" ref="rootEl" class="section reveal" :class="{ 'is-in': isRevealed }">
     <SectionHeading :eyebrow="t('education.eyebrow')" :title="t('education.title')" />
     <div class="edu">
       <div class="edu__col">
-        <div class="edu__col-label mono">→ formal</div>
+        <div class="edu__col-label mono">→ {{ t('education.labels.formal') }}</div>
         <div v-for="it in formal" :key="it.school" class="edu__card">
           <div class="edu__school">{{ it.school }}</div>
           <div class="edu__degree">{{ it.degree }}</div>
@@ -50,13 +45,13 @@ const isRevealed = useReveal(rootEl)
         </div>
       </div>
       <div class="edu__col">
-        <div class="edu__col-label mono">→ certifications</div>
+        <div class="edu__col-label mono">→ {{ t('education.labels.certifications') }}</div>
         <ul class="edu__cert-list">
           <li v-for="c in certs" :key="c">{{ c }}</li>
         </ul>
       </div>
       <div class="edu__col">
-        <div class="edu__col-label mono">→ languages</div>
+        <div class="edu__col-label mono">→ {{ t('education.labels.languages') }}</div>
         <div v-for="l in languages" :key="l.lang" class="edu__card">
           <div class="edu__lang-name">{{ l.lang }}</div>
           <div class="edu__lang-level mono">{{ l.level }}</div>

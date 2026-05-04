@@ -1,7 +1,6 @@
 <script setup lang="ts">
 // Photo + concentric SVG orbital rings + floating data callouts.
-// Uses NuxtImg for AVIF/WebP + blur placeholder; alt is prose so SR users
-// know who they're "looking at".
+// The portrait uses a native image intentionally; see the inline note below.
 const ticks = Array.from({ length: 36 }, (_, i) => i)
 function tickAt(i: number) {
   const a = (i / 36) * Math.PI * 2

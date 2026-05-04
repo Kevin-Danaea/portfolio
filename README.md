@@ -138,7 +138,7 @@ tsconfig.json                strict + noUncheckedIndexedAccess + exactOptionalPr
 
 The site is deployed to Vercel as static output. Two specific things to know if you fork or self-host:
 
-1. **`@nuxt/image` IPX URLs don't deploy cleanly to Vercel static**. The IPX provider builds URLs containing `&` and `,` (`/_ipx/w_1024&f_avif,webp&q_85/...`) and Vercel's static routing doesn't resolve them to the on-disk files. The portrait uses a plain `<img>` for that reason — the PNG is small and eager-loaded above the fold, so IPX size variants weren't earning their keep.
+1. **Image optimization is intentionally native**. `@nuxt/image`/IPX URLs did not deploy cleanly to Vercel static in this project because the generated paths contained `&` and `,` (`/_ipx/w_1024&f_avif,webp&q_85/...`) and Vercel's static routing did not resolve them to the on-disk files. The portrait uses a plain `<img>` for that reason — the PNG is small and eager-loaded above the fold, so IPX size variants weren't earning their keep.
 2. **DNS** is delegated to Vercel (`ns1.vercel-dns.com`, `ns2.vercel-dns.com`) so SSL cert renewal and subdomain setup are managed automatically.
 
 ---

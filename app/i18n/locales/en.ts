@@ -58,7 +58,15 @@ export default {
     groups: [
       {
         label: 'Languages',
-        items: ['TypeScript', 'JavaScript ES2023', 'Python', 'Kotlin', 'SQL / PL/pgSQL', 'Ruby', 'Bash'],
+        items: [
+          'TypeScript',
+          'JavaScript ES2023',
+          'Python',
+          'Kotlin',
+          'SQL / PL/pgSQL',
+          'Ruby',
+          'Bash',
+        ],
       },
       {
         label: 'Frontend & Mobile',
@@ -123,7 +131,14 @@ export default {
       },
       {
         label: 'Security',
-        items: ['DevSecOps', 'JWT / OAuth', 'HMAC-SHA256', 'Helmet', 'Rate limiting', 'RLS policies'],
+        items: [
+          'DevSecOps',
+          'JWT / OAuth',
+          'HMAC-SHA256',
+          'Helmet',
+          'Rate limiting',
+          'RLS policies',
+        ],
       },
     ],
   },
@@ -183,6 +198,11 @@ export default {
   education: {
     eyebrow: '// formation',
     title: 'Education & credentials',
+    labels: {
+      formal: 'formal',
+      certifications: 'certifications',
+      languages: 'languages',
+    },
     formal: [
       {
         school: 'TECH Universidad Tecnológica',
@@ -232,7 +252,11 @@ export default {
     ctaLabel: 'Send a signal',
     links: [
       { label: 'GitHub', url: 'https://github.com/Kevin-Danaea', handle: "{'@'}Kevin-Danaea" },
-      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/kevin-danae/', handle: '/in/kevin-danae' },
+      {
+        label: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/kevin-danae/',
+        handle: '/in/kevin-danae',
+      },
       {
         label: 'Email',
         url: "mailto:kevin.danaea{'@'}gmail.com",

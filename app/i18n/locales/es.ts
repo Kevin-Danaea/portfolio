@@ -58,7 +58,15 @@ export default {
     groups: [
       {
         label: 'Lenguajes',
-        items: ['TypeScript', 'JavaScript ES2023', 'Python', 'Kotlin', 'SQL / PL/pgSQL', 'Ruby', 'Bash'],
+        items: [
+          'TypeScript',
+          'JavaScript ES2023',
+          'Python',
+          'Kotlin',
+          'SQL / PL/pgSQL',
+          'Ruby',
+          'Bash',
+        ],
       },
       {
         label: 'Frontend y Móvil',
@@ -123,7 +131,14 @@ export default {
       },
       {
         label: 'Seguridad',
-        items: ['DevSecOps', 'JWT / OAuth', 'HMAC-SHA256', 'Helmet', 'Rate limiting', 'Políticas RLS'],
+        items: [
+          'DevSecOps',
+          'JWT / OAuth',
+          'HMAC-SHA256',
+          'Helmet',
+          'Rate limiting',
+          'Políticas RLS',
+        ],
       },
     ],
   },
@@ -183,6 +198,11 @@ export default {
   education: {
     eyebrow: '// formación',
     title: 'Educación y credenciales',
+    labels: {
+      formal: 'formación',
+      certifications: 'certificaciones',
+      languages: 'idiomas',
+    },
     formal: [
       {
         school: 'TECH Universidad Tecnológica',
@@ -216,7 +236,10 @@ export default {
     sub: 'Qué estoy haciendo este mes — inspirado en la idea de la página /now de Derek Sivers.',
     items: [
       { k: 'Construyendo', v: 'Idilio TV — móvil, admin y edge functions.' },
-      { k: 'Asegurando', v: 'Mercado Libre — herramientas de DevSecOps para la org de ingeniería.' },
+      {
+        k: 'Asegurando',
+        v: 'Mercado Libre — herramientas de DevSecOps para la org de ingeniería.',
+      },
       { k: 'Estudiando', v: 'Tareas de mecánica cuántica y lecturas de relatividad general.' },
       { k: 'Leyendo', v: 'Lecciones de Física de Feynman, vol. III.' },
       { k: 'Toqueteando', v: 'ai-docgen, oraculo_bot, trading_ai — proyectos pequeños.' },
@@ -232,7 +255,11 @@ export default {
     ctaLabel: 'Enviar una señal',
     links: [
       { label: 'GitHub', url: 'https://github.com/Kevin-Danaea', handle: "{'@'}Kevin-Danaea" },
-      { label: 'LinkedIn', url: 'https://www.linkedin.com/in/kevin-danae/', handle: '/in/kevin-danae' },
+      {
+        label: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/kevin-danae/',
+        handle: '/in/kevin-danae',
+      },
       {
         label: 'Email',
         url: "mailto:kevin.danaea{'@'}gmail.com",

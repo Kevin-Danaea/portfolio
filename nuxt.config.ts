@@ -31,7 +31,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
-    '@nuxt/image',
     '@nuxtjs/i18n',
     '@pinia/nuxt',
     '@nuxtjs/sitemap',
@@ -79,11 +78,6 @@ export default defineNuxtConfig({
       { name: 'JetBrains Mono', weights: [400, 500], provider: 'google' },
     ],
     defaults: { subsets: ['latin'] },
-  },
-
-  image: {
-    format: ['avif', 'webp'],
-    quality: 85,
   },
 
   schemaOrg: {

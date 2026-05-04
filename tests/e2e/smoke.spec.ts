@@ -15,6 +15,7 @@ const headings = {
     education: 'Education & credentials',
     now: 'Now',
     contact: "Let's connect",
+    educationLabels: ['formal', 'certifications', 'languages'],
   },
   es: {
     hero: 'Kevin Danae',
@@ -24,6 +25,7 @@ const headings = {
     education: 'Educación y credenciales',
     now: 'Ahora',
     contact: 'Conectemos',
+    educationLabels: ['formación', 'certificaciones', 'idiomas'],
   },
 }
 
@@ -55,6 +57,12 @@ for (const locale of ['en', 'es'] as const) {
         await expect(
           page.getByRole('heading', { level: 2 }).filter({ hasText: h[k] }),
         ).toBeVisible()
+      }
+    })
+
+    test('education column labels are localized', async ({ page }) => {
+      for (const label of headings[locale].educationLabels) {
+        await expect(page.locator('#education .edu__col-label', { hasText: label })).toBeVisible()
       }
     })
 

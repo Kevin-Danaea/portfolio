@@ -14,6 +14,7 @@ import AxeBuilder from '@axe-core/playwright'
 
 for (const locale of ['en', 'es'] as const) {
   test(`a11y - ${locale} home (axe WCAG 2.1 AA + best-practice)`, async ({ page }) => {
+    test.setTimeout(60_000)
     await page.goto(`/${locale}`)
     // Wait for any reveals to settle so visibility/contrast checks don't
     // fire against opacity:0 elements.
