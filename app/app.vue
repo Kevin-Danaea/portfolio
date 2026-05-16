@@ -17,12 +17,12 @@ useSchemaOrg([
     name: 'Kevin Aguilera',
     alternateName: 'Kevin Danae Aguilera Barragán',
     jobTitle: 'Software Engineer',
+    description:
+      'Software Engineer specializing in TypeScript, React, React Native, platform tooling, internal tools and GenAI integrations.',
+    email: 'mailto:kevin.danaea@gmail.com',
     url: 'https://kevinaguilera.tech',
     image: 'https://kevinaguilera.tech/images/kevin.png',
-    sameAs: [
-      'https://github.com/Kevin-Danaea',
-      'https://www.linkedin.com/in/kevin-danae/',
-    ],
+    sameAs: ['https://github.com/Kevin-Danaea', 'https://www.linkedin.com/in/kevin-danae/'],
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Tolcayuca',

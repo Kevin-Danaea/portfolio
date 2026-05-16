@@ -1,16 +1,21 @@
 import { describe, it, expect } from 'vitest'
 import {
   applyBlackHoleGravity,
+  arePlanetsColliding,
   bounceHorizontal,
   bounceVertical,
+  growBlackHoleAfterPlanetCapture,
+  mergePlanets,
+  planetMass,
   planetBandOffset,
+  shouldPlanetBeConsumed,
   shouldStarBeConsumed,
   starJitter,
   twinkleAmount,
   wrap,
   STAR_CONSUME_BUFFER,
 } from '~/components/cosmic/engine/physics'
-import type { BlackHole, Star } from '~/components/cosmic/engine/types'
+import type { BlackHole, Planet, Star } from '~/components/cosmic/engine/types'
 import { createStar } from '~/components/cosmic/engine/seed'
 
 const bh = (over: Partial<BlackHole> = {}): BlackHole => ({
@@ -21,6 +26,21 @@ const bh = (over: Partial<BlackHole> = {}): BlackHole => ({
   r: 14,
   diskR: 38,
   rot: 0,
+  ...over,
+})
+
+const planet = (over: Partial<Planet> = {}): Planet => ({
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  r: 10,
+  base: '#c2493b',
+  band: 'rgba(255,180,120,0.35)',
+  ring: false,
+  rot: 0,
+  rotS: 0,
+  phase: 0,
   ...over,
 })
 
@@ -77,6 +97,40 @@ describe('shouldStarBeConsumed', () => {
   it('returns false when star is outside event horizon + buffer', () => {
     const star: Star = { ...baseStar, x: 100 + bh().r + STAR_CONSUME_BUFFER + 1, y: 100 }
     expect(shouldStarBeConsumed(star, bh())).toBe(false)
+  })
+})
+
+describe('planet collision and black-hole capture', () => {
+  it('uses radius cubed as a stable visual mass proxy', () => {
+    expect(planetMass(planet({ r: 2 }))).toBe(8)
+    expect(planetMass(planet({ r: 0 }))).toBe(1)
+  })
+
+  it('detects softened planet overlap as a collision', () => {
+    expect(arePlanetsColliding(planet({ x: 0, r: 10 }), planet({ x: 15, r: 10 }))).toBe(true)
+    expect(arePlanetsColliding(planet({ x: 0, r: 10 }), planet({ x: 25, r: 10 }))).toBe(false)
+  })
+
+  it('merges planets with momentum conservation and volume-based radius', () => {
+    const a = planet({ x: 0, vx: 2, r: 10 })
+    const b = planet({ x: 20, vx: -2, r: 10, ring: true })
+    const merged = mergePlanets(a, b)
+
+    expect(merged.x).toBe(10)
+    expect(merged.vx).toBe(0)
+    expect(merged.r).toBeCloseTo((10 ** 3 + 10 ** 3) ** (1 / 3))
+    expect(merged.ring).toBe(true)
+  })
+
+  it('captures planets that cross the event horizon', () => {
+    expect(shouldPlanetBeConsumed(planet({ x: 108, y: 100, r: 10 }), bh())).toBe(true)
+    expect(shouldPlanetBeConsumed(planet({ x: 130, y: 100, r: 10 }), bh())).toBe(false)
+  })
+
+  it('grows the black hole accretion disk after planet capture without runaway sizing', () => {
+    const grown = growBlackHoleAfterPlanetCapture(bh({ r: 20, diskR: 38 }), planet({ r: 100 }))
+    expect(grown.r).toBe(22)
+    expect(grown.diskR).toBeCloseTo(59.4)
   })
 })
 

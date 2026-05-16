@@ -7,15 +7,19 @@
  */
 
 import { ref, type Ref } from 'vue'
-import { createComet, createScene, createStar } from './seed'
+import { createComet, createPlanet, createScene, createStar } from './seed'
 import {
   applyBlackHoleGravity,
+  arePlanetsColliding,
   bounceHorizontal,
   bounceVertical,
   BH_ROT_PER_FRAME,
+  growBlackHoleAfterPlanetCapture,
+  mergePlanets,
   PLANET_BH_FORCE,
   PLANET_BH_RANGE,
   PLANET_FRICTION,
+  shouldPlanetBeConsumed,
   shouldStarBeConsumed,
   starJitter,
   STAR_BH_FORCE,
@@ -119,7 +123,7 @@ export function useCosmicEngine(options: UseCosmicEngineOptions) {
     }
 
     // 4) Black hole — drifts, bounces off insets, rotates
-    const bh = s.blackHole
+    let bh = s.blackHole
     bh.x += bh.vx
     bh.y += bh.vy
     bh.vx = bounceHorizontal(bh, W, 80)
@@ -127,13 +131,34 @@ export function useCosmicEngine(options: UseCosmicEngineOptions) {
     bh.rot += BH_ROT_PER_FRAME
     drawBlackHole(ctx, bh)
 
-    // 5) Planets — gentle gravity, friction, wrap
-    for (const p of s.planets) {
+    // 5) Planets — gravity, inelastic collisions, horizon capture, wrap
+    for (let i = s.planets.length - 1; i >= 0; i--) {
+      const p = s.planets[i]
+      if (!p) continue
       p.x += p.vx
       p.y += p.vy
       const next = applyBlackHoleGravity(p, bh, PLANET_BH_RANGE, PLANET_BH_FORCE)
       p.vx = next.vx * PLANET_FRICTION
       p.vy = next.vy * PLANET_FRICTION
+
+      if (shouldPlanetBeConsumed(p, bh)) {
+        s.blackHole = growBlackHoleAfterPlanetCapture(bh, p)
+        bh = s.blackHole
+        s.planets[i] = createPlanet(Math.random, W, H)
+        continue
+      }
+
+      let merged = false
+      for (let j = i - 1; j >= 0; j--) {
+        const other = s.planets[j]
+        if (!other || !arePlanetsColliding(p, other)) continue
+        s.planets[j] = mergePlanets(other, p)
+        s.planets.splice(i, 1)
+        merged = true
+        break
+      }
+      if (merged) continue
+
       p.x = wrap(p.x, 0, W, 40)
       p.y = wrap(p.y, 0, H, 40)
       p.rot += p.rotS

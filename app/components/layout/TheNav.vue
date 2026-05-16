@@ -31,6 +31,15 @@ const links = computed(() => [
     </div>
 
     <div class="nav__right">
+      <a
+        class="nav__resume mono"
+        href="/Kevin_Aguilera_Resume.pdf"
+        target="_blank"
+        rel="noopener"
+        download
+      >
+        {{ t('nav.resume') }}
+      </a>
       <LangToggle />
     </div>
   </nav>
@@ -129,6 +138,30 @@ const links = computed(() => [
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.nav__resume {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  color: var(--color-fg);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    background var(--dur-base) var(--ease-out);
+}
+
+.nav__resume:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: rgb(232 160 107 / 0.06);
 }
 
 @media (max-width: 880px) {

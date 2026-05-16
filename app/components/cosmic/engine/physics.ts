@@ -6,7 +6,7 @@
  * applies the results in place to avoid per-frame allocation.
  */
 
-import type { BlackHole, Star } from './types'
+import type { BlackHole, Planet, Star } from './types'
 
 // Tunables — extracted from the prototype, kept as named constants so
 // behavior changes show up as a single-line diff with intent.
@@ -18,6 +18,9 @@ export const STAR_FRICTION = 0.985
 export const PLANET_FRICTION = 0.998
 /** Distance from event horizon at which a star is "consumed" and respawns. */
 export const STAR_CONSUME_BUFFER = 6
+/** Visual collision bodies overlap before merging, so rings do not over-trigger. */
+export const PLANET_COLLISION_SOFTNESS = 0.82
+export const PLANET_MAX_RADIUS = 30
 
 export interface Body2D {
   x: number
@@ -55,6 +58,64 @@ export function shouldStarBeConsumed(star: Star, bh: BlackHole): boolean {
   const dy = bh.y - star.y
   const d = Math.sqrt(dx * dx + dy * dy)
   return d < bh.r + STAR_CONSUME_BUFFER
+}
+
+/** Volume-like mass proxy for spherical bodies in a 2D visual field. */
+export function planetMass(planet: Pick<Planet, 'r'>): number {
+  return Math.max(1, planet.r ** 3)
+}
+
+export function arePlanetsColliding(a: Planet, b: Planet): boolean {
+  const dx = b.x - a.x
+  const dy = b.y - a.y
+  const d = Math.sqrt(dx * dx + dy * dy)
+  return d <= (a.r + b.r) * PLANET_COLLISION_SOFTNESS
+}
+
+/**
+ * Perfectly inelastic planet collision: bodies merge, momentum is conserved,
+ * and radius grows by volume rather than by simple addition.
+ */
+export function mergePlanets(a: Planet, b: Planet): Planet {
+  const ma = planetMass(a)
+  const mb = planetMass(b)
+  const total = ma + mb
+  const dominant = ma >= mb ? a : b
+  const passenger = ma >= mb ? b : a
+
+  return {
+    ...dominant,
+    x: (a.x * ma + b.x * mb) / total,
+    y: (a.y * ma + b.y * mb) / total,
+    vx: (a.vx * ma + b.vx * mb) / total,
+    vy: (a.vy * ma + b.vy * mb) / total,
+    r: Math.min(PLANET_MAX_RADIUS, total ** (1 / 3)),
+    ring: a.ring || b.ring,
+    rotS: (a.rotS * ma + b.rotS * mb) / total,
+    phase: dominant.phase,
+    band: dominant.band || passenger.band,
+  }
+}
+
+export function shouldPlanetBeConsumed(planet: Planet, bh: BlackHole): boolean {
+  const dx = bh.x - planet.x
+  const dy = bh.y - planet.y
+  const d = Math.sqrt(dx * dx + dy * dy)
+  return d < bh.r + planet.r * 0.35
+}
+
+/**
+ * Absorption transfers a tiny visual amount of mass into the black hole.
+ * The cap keeps the decorative backdrop from swallowing the whole page.
+ */
+export function growBlackHoleAfterPlanetCapture(bh: BlackHole, planet: Planet): BlackHole {
+  const growth = Math.min(5, planet.r * 0.08)
+  const nextR = Math.min(22, bh.r + growth)
+  return {
+    ...bh,
+    r: nextR,
+    diskR: Math.max(bh.diskR, nextR * 2.7),
+  }
 }
 
 /** Wrap a coordinate around the field with a margin so wrap is invisible. */

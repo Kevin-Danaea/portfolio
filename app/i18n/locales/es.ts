@@ -4,7 +4,7 @@ export default {
   meta: {
     title: 'Kevin Aguilera — Software Engineer',
     description:
-      'Kevin Aguilera — Software Engineer Full Stack construyendo sistemas de streaming, fintech y AI. Estudiante de Física. Tolcayuca, México.',
+      'Kevin Aguilera — Software Engineer construyendo streaming, fintech, herramientas internas e integraciones GenAI con TypeScript, React, React Native, NestJS y AWS.',
   },
 
   nav: {
@@ -14,6 +14,7 @@ export default {
     education: 'Educación',
     now: 'Ahora',
     contact: 'Contacto',
+    resume: 'CV',
   },
 
   hero: {
@@ -23,7 +24,7 @@ export default {
     tagline: 'Construyendo software en la intersección de',
     taglineWords: ['la web', 'móvil', 'la física', 'el cosmos'],
     blurb:
-      'Soy ingeniero full-stack y me gusta lanzar cosas — apps móviles, plataformas web, servicios backend. Actualmente ayudo a construir un producto de streaming en Idilio TV y trabajo en herramientas de seguridad en Mercado Libre. En paralelo, estudio física e intento entender un poco mejor el universo.',
+      'Soy software engineer y me gusta lanzar sistemas útiles: apps móviles, plataformas admin, servicios backend, automatización de seguridad e integraciones GenAI. Últimamente eso significa monetización real, mejor playback de streaming, workflows seguros y traducción de subtítulos con AI. En paralelo, estudio física e intento entender un poco mejor el universo.',
     cta1: 'Contáctame',
     cta2: 'Descargar CV',
     status: 'Abierto a oportunidades',
@@ -37,9 +38,9 @@ export default {
     p3: 'Si pudiera abordar mañana una nave a otra galaxia, probablemente lo haría. Mientras, sigo construyendo, leyendo a Feynman y aprendiendo cosas nuevas un bug a la vez.',
     stats: [
       { k: '4+', v: 'años escribiendo código en producción' },
-      { k: '3', v: 'empresas, tres problemas muy distintos' },
-      { k: '1', v: 'licenciatura en Física en curso' },
-      { k: '∞', v: 'pestañas abiertas sobre cosmología' },
+      { k: '20%', v: 'mejora de performance en streaming' },
+      { k: '95%', v: 'accuracy en traducción AI de subtítulos' },
+      { k: '$0→live', v: 'lanzamiento de revenue por suscripciones y bundles' },
     ],
     interests: [
       'Física teórica',
@@ -151,32 +152,32 @@ export default {
       {
         company: 'Idilio TV',
         desc: 'Startup de streaming y video bajo demanda',
-        role: 'Full Stack Software Engineer · Mobile',
+        role: 'Software Engineer · Streaming, Platform y GenAI',
         period: 'Dic 2025 — Presente',
         loc: 'Remoto · México',
         bullets: [
-          'Ayudo a construir una app de streaming cross-platform (iOS y Android) en React Native + Expo SDK 54 — trabajo entre componentes, slices de Redux y hooks para auth, reproducción Mux, recomendaciones y un sistema de recompensas.',
-          'Colaboré en un setup de A/B testing con bucketing FNV-1a y targeting JSONB (país, región, idioma, tier) para correr experimentos en posters, shows, episodios y reels.',
-          'Construí una app companion nativa en Kotlin + Jetpack Compose con Hilt, Orbit MVI y Media3 ExoPlayer (HLS), incluyendo benchmarks y minificación R8.',
-          'Contribuí a la API admin en NestJS 11: Swagger, auth Supabase JWT, Helmet, throttling y pruebas con Jest.',
-          'Escribí Edge Functions en Deno 2 + Hono con verificación HMAC-SHA256 para webhooks de RevenueCat y Mux.',
-          'Trabajé en migraciones de PostgreSQL y RPCs en PL/pgSQL alrededor de RLS, geofencing, soft-delete y evaluación unificada de variantes de contenido.',
-          'Ayudé a integrar AWS Bedrock + Translate en un pipeline de traducción de subtítulos con AI, para evitar traducciones manuales.',
-          'Contribuí al dashboard admin en React 19 + Vite sobre Refine.dev — componentes, uploads reanudables con Mux Upchunk y estado en Zustand.',
+          'Lancé una app de streaming cross-platform (iOS y Android) en React Native + Expo SDK 54 sobre 112+ componentes, 36 slices de Redux Toolkit y 23 hooks para auth, reproducción Mux, recomendaciones y rewards.',
+          'Lancé el stack de monetización in-app para suscripciones y bundles, llevando compras de $0 a revenue activo.',
+          'Logré una mejora de performance del 20% en la app de streaming preservando playback instantáneo en dispositivos fuertes.',
+          'Creé un dashboard admin en React 19 + Vite con 258+ componentes para operaciones de contenido, uploads reanudables, orden drag-and-drop y Zustand conectado a APIs tipadas de Supabase.',
+          'Implementé una API en NestJS 11 y 11 Supabase Edge Functions para auth, webhooks, workflows de contenido e integraciones operativas.',
+          'Mantuve 223+ migraciones de PostgreSQL y RPCs PL/pgSQL con RLS, geo-fencing y evaluación unificada de contenido en 4 entity types.',
+          'Construí A/B testing determinístico con bucketing FNV-1a y targeting JSONB por país, región, idioma y subscription tier.',
+          'Integré AWS Bedrock + Translate para traducción AI de subtítulos con 95% de accuracy, además de push notifications con AWS ECS Fargate y Expo Server SDK.',
         ],
       },
       {
         company: 'Mercado Libre',
         desc: 'El e-commerce y fintech más grande de Latinoamérica',
         role: 'Software Engineer · Ciberseguridad / DevSecOps',
-        period: 'Abr 2022 — Presente',
+        period: 'Abr 2022 — Dic 2025',
         loc: 'Remoto · México',
         bullets: [
-          'Trabajo en herramientas de automatización de seguridad y pipelines DevSecOps que se usan en toda la organización — análisis estático, escaneo de secretos y policy-as-code en CI/CD.',
-          'Desarrollo servicios internos en Python y JavaScript que ayudan a triagear y remediar findings de seguridad, para que los issues críticos se resuelvan más rápido.',
-          'Colaboro con equipos de producto, plataforma e infra para empujar patrones secure-by-default: auth, gestión de secretos y hardening de dependencias.',
-          'Antes de pasarme a seguridad, contribuí a features full-stack (React / Node / Python) — eso me dio sensibilidad para ambos lados del problema.',
-          'Día a día en un entorno políglota de alta escala con millones de usuarios diarios.',
+          'Construí herramientas de automatización de seguridad y pipelines DevSecOps en Python y JavaScript para CI/CD, incluyendo análisis estático, escaneo de secretos y policy-as-code.',
+          'Reduje 15% el tiempo de remediación de vulnerabilidades mejorando triage y detección temprana de findings severos.',
+          'Contribuí a features full-stack y sistemas internos con JavaScript, React, Node.js y Python antes de moverme a security engineering.',
+          'Impulsé patrones secure-by-default en microservicios: autenticación, gestión de secretos y hardening de dependencias a escala.',
+          'Trabajé en un entorno políglota de alto tráfico con productos usados por millones de usuarios diarios.',
         ],
       },
       {

@@ -19,6 +19,7 @@ export interface NavCopy {
   education: string
   now: string
   contact: string
+  resume: string
 }
 
 export interface HeroCopy {
